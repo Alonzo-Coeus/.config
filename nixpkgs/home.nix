@@ -2,15 +2,13 @@
 let
   myXMonad = pkgs.callPackage ./xmonad.nix {};
 in {
-  imports = [./homeLayout.nix ./alacritty.nix ./devEnv/default.nix ./office.nix];
+  imports = [./alacritty.nix ./devEnv/default.nix];
   nixpkgs.config.allowUnfree = true; 
-
+  nixpkgs.config.allowBroken = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
   home.keyboard.layout = "gb";
   home.packages = [
-    pkgs.chromium pkgs.spotify pkgs.discord
-    pkgs.electrum
     pkgs.gnome3.nautilus pkgs.gparted pkgs.pavucontrol
-    pkgs.lutris pkgs.steam pkgs.vulkan-tools
     myXMonad
   ]; 
 
@@ -27,10 +25,5 @@ in {
   
   gtk = {
     enable = true;
-
-    theme = {
-      package = pkgs.numix-solarized-gtk-theme;
-      name  = "numix-solarized-gtk-theme";
-    };
   };
 }

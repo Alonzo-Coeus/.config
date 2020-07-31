@@ -8,8 +8,8 @@ let drv = { mkDerivation, base, containers, deepseq, hpack, lens, mtl
       src = nixpkgs.pkgs.fetchgit {
         url = "https://github.com/Alonzo-Coeus/.xmonad";
         name = "my-xmonad";
-        rev = "baaa64f103fc822eb11e7da3289747ef6044f835";
-        sha256 = "7ff57d0185768b675fc2a4cdd424d9bef5c96f5433fcc0ade0364db8d1a502c8";
+        rev = "e3fa438d93c8de4fb4f2c0ac9d60fa3eb0e509b6";
+        sha256 = "edd7b7691a8c5ae87b5ed668059c5dec0cd961ec39e2d35d79fa3ca8f5ffda15";
       };
       isLibrary = false;
       isExecutable = true;
