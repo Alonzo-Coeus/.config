@@ -9,7 +9,6 @@
     ./haskell.nix
     ./python.nix ./node.nix
     ./cc.nix ./golang.nix ./rust.nix
-    ./solidity.nix
     ./latex.nix
   ];
 }
