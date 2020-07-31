@@ -7,13 +7,12 @@ in {
 
   home.keyboard.layout = "gb";
   home.packages = [
-    pkgs.chromium pkgs.spotify pkgs.discord
+    pkgs.chromium pkgs.spotify pkgs.discord pkgs.vlc 
     pkgs.electrum
     pkgs.gnome3.nautilus pkgs.gparted pkgs.pavucontrol
     pkgs.lutris pkgs.steam pkgs.vulkan-tools
     myXMonad
   ]; 
-
 
   programs = {
     home-manager.enable      = true;
