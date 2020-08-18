@@ -46,7 +46,8 @@
 ;; our package manager can't deal with; see raxod502/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 (package! pdf-tools)
-;(use-package! org-ref
+(package! slime)
+; (use-package! org-ref
 ;  :after org
 ;  :preface
 ;  (setq org-ref-default-bibliography (list "~/org/myLibrary.bib"))

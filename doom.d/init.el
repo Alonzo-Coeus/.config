@@ -176,5 +176,7 @@
        (default +bindings +smartparens))
 
 ;(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-;(setq inferior-lisp-program "sbcl")
+(setq inferior-lisp-program
+      (locate-file "sbcl" exec-path))
+
 (setq haskell-process-type 'cabal-new-repl)
