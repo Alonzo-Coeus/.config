@@ -1,7 +1,5 @@
 { config, pkgs, lib, ... }:
-let
-  myXMonad = pkgs.callPackage ./xmonad.nix {};
-in {
+{
   imports = [./homeLayout.nix ./alacritty.nix ./devEnv/default.nix ./office.nix];
   nixpkgs.config.allowUnfree = true; 
 
@@ -11,7 +9,6 @@ in {
     pkgs.electrum pkgs.cointop
     pkgs.gnome3.nautilus pkgs.gparted pkgs.pavucontrol
     pkgs.lutris pkgs.steam pkgs.vulkan-tools
-    myXMonad
   ]; 
 
   programs = {
