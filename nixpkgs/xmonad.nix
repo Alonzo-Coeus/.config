@@ -14,7 +14,6 @@ let drv = { mkDerivation, base, containers, deepseq, hpack, lens, mtl
       isLibrary = false;
       isExecutable = true;
       doHaddock = false;
-      libraryToolDepends = [ hpack ];
       executableHaskellDepends = [
         base
         containers
