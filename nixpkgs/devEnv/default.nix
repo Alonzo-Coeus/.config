@@ -2,7 +2,7 @@
 let doom-emacs = import ./doom.nix;
 in {
   imports = [
-    ./commonLisp.nix
+    ./commonLisp.nix ./racket.nix
     ./haskell.nix
     ./python.nix ./node.nix
     ./cc.nix ./golang.nix ./rust.nix
