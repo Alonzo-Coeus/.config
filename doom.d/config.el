@@ -43,6 +43,7 @@
 (setq display-line-numbers-type t)
 (global-set-key [f1] 'eshell)
 
+(defalias 'vi 'evil-edit)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
