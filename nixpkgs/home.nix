@@ -10,7 +10,7 @@ in {
     pkgs.chromium pkgs.spotify pkgs.discord pkgs.vlc
     pkgs.electrum pkgs.cointop
     pkgs.gnome3.nautilus pkgs.gparted pkgs.pavucontrol
-    pkgs.lutris pkgs.steam pkgs.vulkan-tools
+    pkgs.lutris pkgs.steam pkgs.vulkan-tools pkgs.minecraft
     myXMonad
   ]; 
 
