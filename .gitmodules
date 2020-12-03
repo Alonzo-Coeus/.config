@@ -1,0 +1,3 @@
+[submodule "doom.d/extensions/erc-sasl"]
+	path = doom.d/extensions/erc-sasl
+	url = https://github.com/suhailshergill/erc-sasl

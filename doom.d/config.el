@@ -6,8 +6,14 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Alonzo Coeus"
+      user-mail-address "Alonzo.Coeus@mail.com")
+
+(setq auth-sources '("~/.authinfo"))
+
+(setq socks-server (list "Default Proxy" "localhost" 9050 5))
+(setq socks-noproxy '("localhost"))
+(require 'socks)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -44,19 +50,52 @@
 (global-set-key [f1] 'eshell)
 
 (defalias 'vi 'evil-edit)
-;; Here are some additional functions/macros that could help you configure Doom:
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c g k').
-;; This will open documentation for it, including demos of how they are used.
-;;
-;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
-;; they are implemented.
+
+(use-package centaur-tabs
+  :demand
+  :config
+  (centaur-tabs-mode t)
+  :bind
+  ("C-<prior>" . centaur-tabs-backward)
+  ("C-<next>" . centaur-tabs-forward))
+
+(defconst freenode-irc "irc.freenode.net")
+
+(use-package erc
+  :delight "ε "
+
+  :custom-face
+  (erc-action-face ((t (:foreground "#8fbcbb"))))
+  (erc-error-face ((t (:foreground "#bf616a"))))
+  (erc-input-face ((t (:foreground "#ebcb8b"))))
+  (erc-notice-face ((t (:foreground "#ebcb8b"))))
+  (erc-timestamp-face ((t (:foreground "#a3be8c"))))
+
+
+  :custom
+  (erc-autojoin-channels-alist '((freenode-irc
+                                  "#nixos" "#bash" "#haskell" "#emacs"
+                                  "#xmonad" "#latex" "#linux" "#python")))
+  (erc-autojoin-timing 'ident)
+  (erc-fill-function 'erc-fill-static)
+  (erc-fill-static-center 22)
+  (erc-header-line-format "%n on %t (%m)")
+  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-join-buffer 'bury)
+  (erc-kill-buffer-on-part t)
+  (erc-kill-queries-on-quit t)
+  (erc-kill-server-buffer-on-quit t)
+  (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-lurker-threshold-time 43200)
+  (erc-prompt-for-nickserv-password nil)
+  (erc-server-reconnect-attempts 5)
+  (erc-server-reconnect-timeout 3)
+  (erc-track-exclude-types '("JOIN" "MODE" "NICK" "PART" "QUIT"
+                             "324" "329" "332" "333" "353" "477")))
+
+
+(defun irc ()
+  "Connect to IRC."
+  (interactive)
+  (when (y-or-n-p "IRC? ")
+    (erc :server freenode-irc :port 6667 :nick "AlonzoC")))
