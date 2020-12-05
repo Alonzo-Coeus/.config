@@ -2,6 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    nodejs
+    nodejs nodePackages.javascript-typescript-langserver 
   ];
 }
