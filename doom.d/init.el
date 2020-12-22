@@ -181,4 +181,3 @@
 (setq inferior-lisp-program
       (locate-file "sbcl" exec-path))
 
-(setq haskell-process-type 'cabal-new-repl)

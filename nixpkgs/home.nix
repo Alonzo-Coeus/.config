@@ -17,6 +17,10 @@ in {
   programs = {
     home-manager.enable      = true;
     command-not-found.enable = true;
+    direnv = {
+      enable = true;
+      enableNixDirenvIntegration = true; 
+    }; 
     git = {
       enable = true;
       userName  = "Alonzo Coeus";

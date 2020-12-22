@@ -43,6 +43,28 @@
         "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
 
+;; Haskell
+(require 'lsp-haskell)
+(require 'nix-sandbox)
+(setq default-nix-wrapper
+      (lambda (args)
+        (append
+         (append (list "nix-shell" "-I" "." "--command" )
+                 (list (mapconcat 'identity args " "))
+                 )
+         (list (nix-current-sandbox))
+         )
+        )
+      )
+(setq haskell-nix-wrapper
+      (lambda (args)
+        (apply default-nix-wrapper (list (append args (list "--ghc-option" "-Wwarn"))))
+        )
+      )
+
+(setq haskell-process-wrapper-function haskell-nix-wrapper)
+(setq haskell-process-type 'cabal-repl)
+
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
