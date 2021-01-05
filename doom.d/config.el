@@ -81,7 +81,8 @@
   ("C-<prior>" . centaur-tabs-backward)
   ("C-<next>" . centaur-tabs-forward))
 
-(defconst freenode-irc "irc.freenode.net")
+(defconst freenode-irc "chat.freenode.net")
+;;(defconst freenode-irc "ajnvpgl6prmkb7yktvue6im5wiedlz2w32uhcwaamdiecdrfpwwgnlqd.onion")
 
 (use-package erc
   :delight "ε "
@@ -115,9 +116,52 @@
   (erc-track-exclude-types '("JOIN" "MODE" "NICK" "PART" "QUIT"
                              "324" "329" "332" "333" "353" "477")))
 
+(if (file-exists-p "~/.config/doom.d/extensions/erc-sasl/erc-sasl.el")
+    (use-package erc-sasl
+      :load-path "extensions/erc-sasl/"
+      :after erc
+      :config
+      (add-to-list 'erc-sasl-server-regexp-list "*.onion")
+    ;;(setq erc-server-connect-function 'socks-open-network-stream)
+      (defun erc-login ()
+        "Perform user authentication at the IRC server."
+        (erc-log (format "login: nick: %s, user: %s %s %s :%s"
+                         (erc-current-nick)
+                         (user-login-name)
+                         (or erc-system-name (system-name))
+                         erc-session-server
+                         erc-session-user-full-name))
+        (if erc-session-password
+            (erc-server-send (format "PASS %s" erc-session-password))
+          (message "Logging in without password"))
+        (when (and (featurep 'erc-sasl) (erc-sasl-use-sasl-p))
+          (erc-server-send "CAP REQ :sasl"))
+        (erc-server-send (format "NICK %s" (erc-current-nick)))
+        (erc-server-send
+         (format "USER %s %s %s :%s"
+                 ;; hacked - S.B.
+                 (if erc-anonymous-login erc-email-userid (user-login-name))
+                 "0" "*"
+                 erc-session-user-full-name))
+        (erc-update-mode-line))))
+
 
 (defun irc ()
   "Connect to IRC."
   (interactive)
   (when (y-or-n-p "IRC? ")
     (erc :server freenode-irc :port 6667 :nick "AlonzoC")))
+
+(use-package org-roam
+      :ensure t
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory "~/slip-box")
+      :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))
+              (("C-c n I" . org-roam-insert-immediate))))
