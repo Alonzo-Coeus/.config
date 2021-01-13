@@ -12,7 +12,10 @@ in {
 
 
   home.packages = with pkgs; [
-    git curl gnumake doom-emacs
+    git curl gnumake doom-emacs sqlite
+    (aspellWithDicts (ds: with ds; [
+      en en-computers en-science
+    ]))
   ];
 
  home.file.".emacs.d/init.el".text = ''

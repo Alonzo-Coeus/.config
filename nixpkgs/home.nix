@@ -10,8 +10,9 @@ in {
     pkgs.chromium pkgs.spotify pkgs.discord pkgs.vlc
     pkgs.electrum pkgs.cointop
     pkgs.gnome3.nautilus pkgs.gparted pkgs.pavucontrol
-    pkgs.lutris pkgs.steam pkgs.vulkan-tools pkgs.minecraft
+    pkgs.lutris pkgs.steam pkgs.protontricks pkgs.vulkan-tools pkgs.minecraft
     myXMonad
+    pkgs.bat 
   ]; 
 
   programs = {
@@ -36,4 +37,8 @@ in {
       name  = "numix-solarized-gtk-theme";
     };
   };
+  home.file.".bashrc".text = ''
+    PATH=~/.npm-global/bin:$PATH
+    alias cat='bat'
+  '';
 }
