@@ -48,6 +48,7 @@
 (package! pdf-tools)
 (package! slime)
 (package! nix-sandbox)
+
 ; (use-package! org-ref
 ;  :after org
 ;  :preface
