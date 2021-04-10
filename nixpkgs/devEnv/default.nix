@@ -4,9 +4,9 @@ in {
   imports = [
     ./commonLisp.nix ./racket.nix
     ./haskell.nix
+    ./beam.nix
     ./python.nix ./node.nix
     ./cc.nix ./golang.nix ./rust.nix
-    ./solidity.nix
     ./latex.nix
   ];
 

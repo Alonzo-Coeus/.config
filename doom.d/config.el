@@ -15,6 +15,7 @@
 (setq socks-noproxy '("localhost"))
 (require 'socks)
 
+(setq read-process-output-max (* 1024 1024))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -30,7 +31,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-solarized-dark)
+
+(when (display-graphic-p) (setq doom-theme 'doom-solarized-dark))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
