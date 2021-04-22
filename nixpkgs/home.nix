@@ -40,5 +40,6 @@ in {
   home.file.".bashrc".text = ''
     PATH=~/.npm-global/bin:$PATH
     alias cat='bat'
+    source ~/.config/prompt.sh
   '';
 }
