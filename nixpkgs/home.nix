@@ -10,11 +10,13 @@ in {
     pkgs.chromium pkgs.spotify pkgs.discord pkgs.vlc
     pkgs.electrum pkgs.cointop
     pkgs.gnome3.nautilus pkgs.gparted pkgs.pavucontrol
-    pkgs.lutris pkgs.steam pkgs.protontricks pkgs.vulkan-tools pkgs.minecraft
+    pkgs.lutris pkgs.protontricks pkgs.vulkan-tools pkgs.minecraft 
+    (pkgs.steam.override {
+	extraLibraries = pkgs: [ pkgs.pipewire.lib ];
+    }) 
     myXMonad
     pkgs.bat 
   ]; 
-
   programs = {
     home-manager.enable      = true;
     command-not-found.enable = true;
